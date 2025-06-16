@@ -1,4 +1,7 @@
 import { logger, task, wait } from "@trigger.dev/sdk/v3";
+import axios from 'axios';
+
+const apiUrl = "https://api.studio.doin9.com";
 
 interface WebStudioPublishPayload {
   projectId: string;
@@ -34,6 +37,20 @@ export const webStudioPublishTask = task({
 
     // Use background mode for long-running operations
     await wait.for({ seconds: processingTime });
+
+    // const response = await axios.post(
+    //   `${apiUrl}//webhook/deploy`,
+    //   {
+    //     projectId: payload.projectId,
+    //     shareLink: payload.shareLink
+    //   },
+    //   {
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'Accept': 'application/json',
+    //     }
+    //   }
+    // );
 
     // Simulate response
     const response = {
